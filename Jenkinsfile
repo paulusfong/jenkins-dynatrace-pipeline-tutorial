@@ -41,7 +41,7 @@ node {
         pushToCloudFoundry(
             target: 'api.cf.sap.hana.ondemand.com',
             organization: 'dm-canary',
-            cloudSpace: 'int',
+            cloudSpace: 'dev',
             credentialsId: 'CF'
         )
         dir ('dynatrace-scripts') {
@@ -120,7 +120,7 @@ node {
         pushToCloudFoundry(
             target: 'api.cf.sap.hana.ondemand.com',
             organization: 'dm-canary',
-            cloudSpace: 'int',
+            cloudSpace: 'dev',
             credentialsId: 'CF'
         )
 
