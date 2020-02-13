@@ -43,7 +43,15 @@ node {
             organization: 'dm-canary',
             cloudSpace: 'dev',
             credentialsId: 'CF',
-            manifestChoice: [manifestFile: 'manifest.yaml']
+             manifestChoice: [
+                manifestFile: 'manifest.yaml',
+                envVars: [
+                    [DT_CLUSTER_ID: 'SampleNodeJsStaging',
+                     DT_TAGS: 'Environment=Production Service=Sample-NodeJs-Service',
+                     DT_CUSTOM_PROP: 'ENVIRONMENT=Production JOB_NAME=${JOB_NAME} BUILD_TAG=${BUILD_TAG} BUILD_NUMBER=${BUIlD_NUMBER}'
+                    ]
+                ]
+             ]
         )
         dir ('dynatrace-scripts') {
             // push a deployment event on the host with the tag [AWS]Environment:JenkinsTutorial
@@ -123,7 +131,16 @@ node {
             organization: 'dm-canary',
             cloudSpace: 'dev',
             credentialsId: 'CF',
-            manifestChoice: [manifestFile: 'manifest.yaml']
+            manifestChoice: [
+                manifestFile: 'manifest.yaml',
+                envVars: [
+                      [DT_CLUSTER_ID: 'SampleNodeJsProduction',
+                       DT_TAGS: 'Environment=Production Service=Sample-NodeJs-Service',
+                       DT_CUSTOM_PROP: 'ENVIRONMENT=Production JOB_NAME=${JOB_NAME} BUILD_TAG=${BUILD_TAG} BUILD_NUMBER=${BUIlD_NUMBER}'
+
+                      ]
+                 ]
+                ]
         )
 
         dir ('dynatrace-scripts') {
