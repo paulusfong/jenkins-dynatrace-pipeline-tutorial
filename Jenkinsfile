@@ -40,7 +40,7 @@ node {
 
         dir ('dynatrace-scripts') {
             // push a deployment event on the host with the tag [AWS]Environment:JenkinsTutorial
-            sh './pushdeployment.sh HOST AWS Environment JenkinsTutorial ' +
+            sh './pushdeployment.sh PROCESS_GROUP ENVIRONMENT Environment Staging ' +
                '${BUILD_TAG} ${BUILD_NUMBER} ${JOB_NAME} ' + 
                'Jenkins ${JENKINS_URL} ${JOB_URL} ${BUILD_URL} ${GIT_COMMIT}'
             
@@ -113,7 +113,7 @@ node {
 
         dir ('dynatrace-scripts') {
             // push a deployment event on the host with the tag [AWS]Environment:JenkinsTutorial
-            sh './pushdeployment.sh HOST AWS Environment JenkinsTutorial '+
+            sh './pushdeployment.sh PROCESS_GROUP ENVIRONMENT Environment Production '+
                '${BUILD_TAG} ${BUILD_NUMBER} ${JOB_NAME} Jenkins '+
                '${JENKINS_URL} ${JOB_URL} ${BUILD_URL} ${GIT_COMMIT}'
             
