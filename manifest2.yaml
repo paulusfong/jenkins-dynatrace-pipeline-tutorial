@@ -1,14 +1,14 @@
 ---
 applications:
-- name: sampleNodeServiceStaging
+- name: sampleNodeServiceProd
   random-route: false
   path: sample-nodejs-service
   memory: 128M
 services:
  - dynatrace-service
 env:
- DT_CLUSTER_ID: SampleNodeJsStaging
- DT_TAGS: Environment=Staging Service=Sample-NodeJs-Service
+ DT_CLUSTER_ID: SampleNodeJsProduction
+ DT_TAGS: Environment=Production Service=Sample-NodeJs-Service
  DT_CUSTOM_PROP: ENVIRONMENT=Production JOB_NAME=${JOB_NAME} BUILD_TAG=${BUILD_TAG} BUILD_NUMBER=${BUIlD_NUMBER}
-
+ 
 
