@@ -1,0 +1,11 @@
+---
+applications:
+- name: sampleNodeService
+  random-route: false
+  path: sample-nodejs-service
+  memory: 128M
+services:
+ - dynatrace-service
+
+
+

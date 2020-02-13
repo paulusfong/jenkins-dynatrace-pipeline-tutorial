@@ -38,6 +38,12 @@ node {
                 "-e 'DT_CUSTOM_PROP=ENVIRONMENT=Staging JOB_NAME=${JOB_NAME} " + 
                     "BUILD_TAG=${BUILD_TAG} BUILD_NUMBER=${BUIlD_NUMBER}'")
 
+        pushToCloudFoundry(
+            target: 'api.cf.sap.hana.ondemand.com',
+            organization: 'dm-canary',
+            cloudSpace: 'int',
+            credentialsId: 'CF'
+        )
         dir ('dynatrace-scripts') {
             // push a deployment event on the host with the tag [AWS]Environment:JenkinsTutorial
             sh './pushdeployment.sh PROCESS_GROUP ENVIRONMENT Environment Staging ' +
@@ -110,6 +116,13 @@ node {
                 "-e 'DT_TAGS=Environment=Production Service=Sample-NodeJs-Service' "+
                 "-e 'DT_CUSTOM_PROP=ENVIRONMENT=Production JOB_NAME=${JOB_NAME} "+
                     "BUILD_TAG=${BUILD_TAG} BUILD_NUMBER=${BUIlD_NUMBER}'")
+
+        pushToCloudFoundry(
+            target: 'api.cf.sap.hana.ondemand.com',
+            organization: 'dm-canary',
+            cloudSpace: 'int',
+            credentialsId: 'CF'
+        )
 
         dir ('dynatrace-scripts') {
             // push a deployment event on the host with the tag [AWS]Environment:JenkinsTutorial

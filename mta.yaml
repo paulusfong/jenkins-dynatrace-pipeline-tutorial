@@ -1,0 +1,17 @@
+_schema-version: 2.1.0
+ID: com.sap.piper.node.sample.nodejs.service
+version: 1.0.0
+description: A sample-nodejs
+provider: Dynatrace pipeline
+modules:
+  - name: sample-nodejs-service
+    type: nodejs
+    requires:
+      - name: dynatrace-service
+    path: sample-nodejs-service
+resources:
+  - name: dynatrace-service
+    type: org.cloudfoundry.existing-service
+
+
+
