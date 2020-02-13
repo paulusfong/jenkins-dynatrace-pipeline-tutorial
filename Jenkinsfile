@@ -42,7 +42,8 @@ node {
             target: 'api.cf.sap.hana.ondemand.com',
             organization: 'dm-canary',
             cloudSpace: 'dev',
-            credentialsId: 'CF'
+            credentialsId: 'CF',
+            manifestChoice: [manifestFile: 'manifest.yaml']
         )
         dir ('dynatrace-scripts') {
             // push a deployment event on the host with the tag [AWS]Environment:JenkinsTutorial
@@ -121,7 +122,8 @@ node {
             target: 'api.cf.sap.hana.ondemand.com',
             organization: 'dm-canary',
             cloudSpace: 'dev',
-            credentialsId: 'CF'
+            credentialsId: 'CF',
+            manifestChoice: [manifestFile: 'manifest.yaml']
         )
 
         dir ('dynatrace-scripts') {
