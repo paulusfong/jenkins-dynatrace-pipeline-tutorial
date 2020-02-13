@@ -55,17 +55,17 @@ node {
         // lets push an event to dynatrace that indicates that we START a load test
         dir ('dynatrace-scripts') {
             sh './pushevent.sh SERVICE CONTEXTLESS DockerService SampleNodeJsStaging ' +
-               '"STARTING Load Test" ${JOB_NAME} "Starting a Load Test as part of the Testing stage"' + 
-               ' ${JENKINS_URL} ${JOB_URL} ${BUILD_URL} ${GIT_COMMIT}'
+              '"STARTING Load Test" ${JOB_NAME} "Starting a Load Test as part of the Testing stage"' + 
+              ' ${JENKINS_URL} ${JOB_URL} ${BUILD_URL} ${GIT_COMMIT}'
         }
         
         // lets run some test scripts
         dir ('sample-nodejs-service-tests') {
             // start load test and run for 120 seconds - simulating traffic for Staging enviornment on port 80
-            sh "rm -f stagingloadtest.log stagingloadtestcontrol.txt"
-            sh "./loadtest.sh 80 stagingloadtest.log stagingloadtestcontrol.txt 120 Staging"
+        //    sh "rm -f stagingloadtest.log stagingloadtestcontrol.txt"
+        //    sh "./loadtest.sh 80 stagingloadtest.log stagingloadtestcontrol.txt 120 Staging"
             
-            archiveArtifacts artifacts: 'stagingloadtest.log', fingerprint: true
+     //       archiveArtifacts artifacts: 'stagingloadtest.log', fingerprint: true
         }
 
         // lets push an event to dynatrace that indicates that we STOP a load test
@@ -85,10 +85,10 @@ node {
         
         // now lets generate a report using our CLI and lets generate some direct links back to dynatrace
         dir ('dynatrace-cli') {
-            sh 'python3 dtcli.py dqlr srv tags/CONTEXTLESS:DockerService=SampleNodeJsStaging '+
+       //     sh 'python3 dtcli.py dqlr srv tags/CONTEXTLESS:DockerService=SampleNodeJsStaging '+
                         'service.responsetime[avg%hour],service.responsetime[p90%hour] ${DT_URL} ${DT_TOKEN}'
-            sh 'mv dqlreport.html dqlstagingreport.html'
-            archiveArtifacts artifacts: 'dqlstagingreport.html', fingerprint: true
+      //      sh 'mv dqlreport.html dqlstagingreport.html'
+     //       archiveArtifacts artifacts: 'dqlstagingreport.html', fingerprint: true
             
             // get the link to the service's dashboard and make it an artifact
             //sh 'python3 dtcli.py link srv tags/CONTEXTLESS:DockerService=SampleNodeJsStaging '+
@@ -135,10 +135,10 @@ node {
         // lets run some test scripts
         dir ('sample-nodejs-service-tests') {
             // start load test and run for 120 seconds - simulating traffic for Production enviornment on port 90
-            sh "rm -f productionloadtest.log productionloadtestcontrol.txt"
-            sh "./loadtest.sh 90 productionloadtest.log productionloadtestcontrol.txt 60 Production"
+      //      sh "rm -f productionloadtest.log productionloadtestcontrol.txt"
+      //      sh "./loadtest.sh 90 productionloadtest.log productionloadtestcontrol.txt 60 Production"
             
-            archiveArtifacts artifacts: 'productionloadtest.log', fingerprint: true
+      //      archiveArtifacts artifacts: 'productionloadtest.log', fingerprint: true
         }
 
         // lets push an event to dynatrace that indicates that we STOP a load test
@@ -157,10 +157,10 @@ node {
         
         // now lets generate a report using our CLI and lets generate some direct links back to dynatrace
         dir ('dynatrace-cli') {
-            sh 'python3 dtcli.py dqlr srv tags/CONTEXTLESS:DockerService=SampleNodeJsProduction '+
+      //      sh 'python3 dtcli.py dqlr srv tags/CONTEXTLESS:DockerService=SampleNodeJsProduction '+
                'service.responsetime[avg%hour],service.responsetime[p90%hour] ${DT_URL} ${DT_TOKEN}'
-            sh 'mv dqlreport.html dqlproductionreport.html'
-            archiveArtifacts artifacts: 'dqlproductionreport.html', fingerprint: true
+     //       sh 'mv dqlreport.html dqlproductionreport.html'
+     //       archiveArtifacts artifacts: 'dqlproductionreport.html', fingerprint: true
 
             // sh 'python3 dtcli.py link srv tags/CONTEXTLESS:DockerService=SampleNodeJsProduction ' +
             //    ' overview 60:0 ${DT_URL} ${DT_TOKEN} > dtprodlinks.txt'
